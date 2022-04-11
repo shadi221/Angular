@@ -1,0 +1,16 @@
+.fa {
+  cursor: pointer;
+}
+
+.basket {
+  text-align: center;
+}
+
+.no-bullets {
+  list-style-type: none;
+}
+
+.title {
+  position: relative;
+  left: 480px;
+}

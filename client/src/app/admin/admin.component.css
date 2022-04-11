@@ -1,0 +1,18 @@
+#sidebar {
+  height: 100%;
+  transition: left 0.5s ease;
+}
+
+#sidebar.visible {
+  left: 0px;
+  transition: left 0.7s ease;
+}
+.addBtn {
+  position: relative;
+  top: 35px;
+  right: 450px;
+}
+
+.fa {
+  cursor: pointer;
+}

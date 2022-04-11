@@ -1,0 +1,79 @@
+<div class="row top">
+  <img class="logo"
+    src="https://p7.hiclipart.com/preview/671/17/124/product-logo-cargo-ship-portable-network-graphics-free-shipping.jpg"
+    alt="Girl" width="150" height="120" />
+  <div class="banner">
+    Budget Groceries
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-md-4" style="margin-left: 110px;">
+      <input class="form-control searchInput" name="searchInCart" placeholder="Search Basket" [(ngModel)]="search" />
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-6">
+      <div class="h3">My Basket</div>
+      <hr style="border-color: white;" />
+      <ul style="padding: 15px;">
+        <li *ngFor="let product of basket | basketPipe: search">
+          <label class="h6">Product name : {{ product["product"].name }}</label>
+          <label style="margin-left: 10px;" class="h6">Quantity:</label>
+          <strong> {{ product.qnt }} </strong>
+          <hr style="border-color: rgb(146, 146, 146);" />
+        </li>
+      </ul>
+      <div class="text-right lead" style="position: absolute; bottom: 10px;">
+        Total Price: {{ getTotal() }} ₪
+      </div>
+      <i class="fa fa-undo" aria-hidden="true" (click)="returnToHomePage()" matTooltip="Return To Our Products"></i>
+    </div>
+    <div class="col-md-6">
+      <div class="h3">Payment | Order</div>
+      <hr style="border-color: white;" />
+      <div class="form">
+        <div class="form-group">
+          <label>City</label>
+          <input type="text" name="city" class="form-control" (dblclick)="dblClick($event)" [(ngModel)]="city" />
+        </div>
+        <div class="form-group">
+          <label>Street</label>
+          <input type="text" name="street" class="form-control" (dblclick)="dblClick($event)" [(ngModel)]="street" />
+        </div>
+        <div class="form-group">
+          <label>Shipping Date</label>
+          <input type="date" class="form-control" [(ngModel)]="shippingDate" />
+        </div>
+        <div class="h5">Payment:</div>
+        <hr style="border-color: white;" />
+        <div class="form-group">
+          <label>Credit Card</label>
+          <input type="text" class="form-control" placeholder="xxxx-xxxx-xxxx-xxxx" [(ngModel)]="card" maxlength=19 />
+        </div>
+        <small id="emailHelp" class="form-text text-muted">* Double Click On Empty Fields To Auto Fill.</small>
+
+        <div class="form-group">
+          <div class="btn btn-dark btn-block" (click)="placeOrder()">Order</div>
+        </div>
+        <div class="form-group">
+          <div *ngIf="orderError" class="alert alert-danger">
+            {{ orderMessage }}
+          </div>
+
+          <div *ngIf="orderCorrect" class="alert alert-success">
+            Order Placed!
+            <br />
+
+            <i class="fa fa-print" aria-hidden="true" (click)="downloadOrderTxt()" matTooltip="Print Receipt"></i>
+            <br />
+
+            <i class="fa fa-undo" aria-hidden="true" (click)="returnToHomePage()"
+              matTooltip="Return To Our Products"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

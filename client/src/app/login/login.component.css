@@ -1,0 +1,35 @@
+.callout-icons {
+  font-size: 24px;
+  color: black;
+  position: absolute;
+  right: 10px;
+  padding: 4px;
+}
+
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+}
+
+#card1 {
+  text-align: center;
+  padding: 50px 50px;
+  color: #fff;
+  background-color: #434a54;
+}
+
+#card1::after {
+  position: absolute;
+  display: block;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  content: "";
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}

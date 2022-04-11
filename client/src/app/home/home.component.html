@@ -1,0 +1,188 @@
+<div class="row top">
+  <img
+    class="logo"
+    src="https://p7.hiclipart.com/preview/671/17/124/product-logo-cargo-ship-portable-network-graphics-free-shipping.jpg"
+    alt="Girl"
+    width="150"
+    height="120"
+  />
+  <div class="banner">
+    Budget Foods
+  </div>
+</div>
+
+<div class="container px-lg-5 mt-3">
+  <div class="row">
+    <div class="col py-8 px-lg-8 border bg-light">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li
+              style="cursor: pointer;"
+              class="nav-item"
+              (click)="getAllProducts()"
+            >
+              <a class="nav-link">All</a>
+            </li>
+            <div *ngFor="let item of categories">
+              <li style="cursor: pointer;" class="nav-item">
+                <a class="nav-link" (click)="getProductsByCat(item.id)">{{
+                  item.name
+                }}</a>
+              </li>
+            </div>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <i
+              class="fa fa-search"
+              style="font-size: 24px; padding: 10px; color: #ffffff;"
+            ></i>
+            <input
+              class="form-control mr-sm-2"
+              style="border-radius: 1px !important;"
+              name="search"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              [(ngModel)]="search"
+              matTooltip="Search For Products"
+            />
+          </form>
+          <i
+            class="fa fa-sign-out"
+            aria-hidden="true"
+            style="font-size: 28px; color: white;"
+            (click)="logOut()"
+            matTooltip="Log Out"
+          ></i>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="row basket mt-2" *ngIf="basket.length > 0">
+    <div class="h3 title">
+      Basket
+    </div>
+
+    <div class="py-8 px-lg-8 p-1 m-1" *ngFor="let item of basket">
+      <div class="mt-5 border bg-light">
+        <hr />
+        <i
+          class="fa fa-times"
+          aria-hidden="true"
+          (click)="deleteFromBasket(item.id)"
+          matTooltip="Remove {{ item['product'].name }}"
+          style="position: relative; bottom: 60px; left: 2px;"
+        ></i>
+
+        <img
+          style="width: 5rem;"
+          class="bd-placeholder-img card-img-top"
+          src="{{ url }}{{ item['product'].img }}"
+          alt=""
+        />
+        <p>
+          <strong>{{ item["product"].name }}</strong>
+        </p>
+        <p>
+          <strong> Quantity: {{ item.qnt }}</strong>
+        </p>
+        <p>
+          <strong>Price: {{ item["product"].price }} ₪</strong>
+        </p>
+        <hr style="border-color: rgb(146, 146, 146);" />
+      </div>
+    </div>
+
+    <div
+      class="text-right mt-4"
+      style="position: absolute; top: 620px; font-size: 18px;"
+    >
+      Total Price: {{ getTotal() }} ₪
+    </div>
+    <div class="" style="position: absolute; font-size: 28px;">
+      <i
+        class="fa fa-credit-card test"
+        aria-hidden="true"
+        matTooltip="Checkout"
+        (click)="goToOrders()"
+      ></i>
+    </div>
+    <hr />
+  </div>
+
+  <div class="row mt-5">
+    <div
+      class="py-8 px-lg-8 p-2 m-2"
+      *ngFor="let product of products | searchPipe: search"
+    >
+      <div class="card" style="width: 12rem; padding: 10px;">
+        <i
+          class="fa fa-shopping-basket"
+          aria-hidden="true"
+          style="font-size: 28px;"
+          data-toggle="modal"
+          data-target=".smallModal"
+          (click)="getSingleProduct(product.id)"
+          matTooltip="Add To Basket"
+        ></i>
+
+        <img
+          class="bd-placeholder-img card-img-top"
+          src="{{ url }}{{ product.img }}"
+          alt=""
+        />
+        <div class="card-body">
+          <h5 class="card-text">{{ product.name }}</h5>
+          <strong class="card-text">Price: {{ product.price }} ₪</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade bd-example-modal-sm smallModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="mySmallModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content" style="padding: 5px;">
+      <div class="d-flex justify-content-between">
+        <div class="text-left">
+          <i
+            class="fas fa-minus"
+            style="
+              font-size: 20px;
+              margin-left: 30px;
+              line-height: 56px;
+              cursor: pointer;
+            "
+            (click)="reduceQuantity()"
+          ></i>
+        </div>
+        <div class="text-center lead" style="padding: 5px;">
+          Quantity: <strong>{{ qnt }}</strong>
+        </div>
+        <div class="text-right">
+          <i
+            class="fas fa-plus"
+            style="font-size: 20px; line-height: 56px; cursor: pointer;"
+            (click)="increaseQnt()"
+          ></i>
+        </div>
+        <div
+          class="btn btn-success btn-sm"
+          data-dismiss="modal"
+          (click)="addToBasket()"
+          style="height: 40px; margin-top: 6px;"
+        >
+          Add
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

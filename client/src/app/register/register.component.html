@@ -1,0 +1,100 @@
+<div class="row top">
+  <img class="logo"
+    src="https://p7.hiclipart.com/preview/671/17/124/product-logo-cargo-ship-portable-network-graphics-free-shipping.jpg"
+    alt="Girl" width="150" height="120" />
+  <div class="banner">
+    Budget Groceries
+  </div>
+</div>
+
+<div class="container mt-2">
+  <div class="col-6 offset-3">
+    <div class="signup-form" *ngIf="!showFields">
+      <h2>Sign Up</h2>
+      <p>Please Fill In This Form To Create An Account!</p>
+      <hr />
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"
+              [(ngModel)]="firstName" />
+          </div>
+
+          <div class="col">
+            <input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"
+              [(ngModel)]="lastName" />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" name="email" placeholder="Email" required="required"
+          [(ngModel)]="email" />
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" name="password" placeholder="Password" required="required"
+          [(ngModel)]="password" />
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password"
+          required="required" [(ngModel)]="confirmPassword" />
+      </div>
+      <div class="form-group">
+        <button type="button" class="btn btn-primary btn-lg" (click)="nextBtn()">
+          Next Step
+        </button>
+      </div>
+      <div class="form-row justify-content-center mt-2">
+        <div class="alert alert-danger" *ngIf="messageShow">{{ message }}</div>
+      </div>
+      <div class="hint-text">
+        Already have an account? <a routerLink="">Login here</a>
+      </div>
+    </div>
+
+    <div class="signup-form" *ngIf="showFields">
+      <h2>Sign Up</h2>
+      <p>Tell Us a Little More About Yourself!</p>
+      <hr />
+      <select [value]="0" class="custom-select" id="validationDefault04" [(ngModel)]="city">
+        <option value="0" disabled>Choose City...</option>
+        <option value="Afula">Afula</option>
+        <option value="Haifa">Haifa</option>
+        <option value="Jerusalem">Jerusalem</option>
+        <option value="Tel Aviv">Tel Aviv</option>
+        <option value="Netanya">Netanya</option>
+        <option value="Ashdod">Ashdod</option>
+        <option value="Rishon LeZiyyon">Rishon LeZiyyon</option>
+        <option value="Petah Tikva">Petah Tikva</option>
+        <option value="Beersheba">Beersheba</option>
+        <option value="Ashkelon">Ashkelon</option>
+      </select>
+      <div class="form-group mt-3">
+        <input type="text" class="form-control" name="street" placeholder="Street" required="required"
+          [(ngModel)]="street" />
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="ID" placeholder="ID" required="required" maxlength=9
+          [(ngModel)]="pID" />
+      </div>
+
+      <div class="form-group">
+        <button type="button" class="btn btn-primary btn-lg" (click)="prevBtn()">
+          Previous Step
+        </button>
+
+        <button type="button" class="btn btn-primary btn-lg ml-2" (click)="signUp()">
+          Register
+        </button>
+      </div>
+      <div class="form-row justify-content-center mt-2">
+        <div class="alert alert-danger" *ngIf="messageShow">{{ message }}</div>
+      </div>
+      <div class="form-row justify-content-center mt-2">
+        <div class="alert alert-success" *ngIf="showMessage">{{ message }}</div>
+      </div>
+      <div class="hint-text">
+        Already have an account? <a routerLink="" href="#">Login here</a>
+      </div>
+    </div>
+  </div>
+</div>

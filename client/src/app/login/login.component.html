@@ -1,0 +1,168 @@
+<div class="row top">
+  <img
+    class="logo"
+    src="https://p7.hiclipart.com/preview/671/17/124/product-logo-cargo-ship-portable-network-graphics-free-shipping.jpg"
+    alt="Girl"
+    width="150"
+    height="120"
+  />
+  <div class="banner">
+    Budget Groceries
+  </div>
+</div>
+
+<div class="container px-lg-5 mt-3">
+  <div class="row">
+    <div class="col py-8 px-lg-8 border bg-light">
+      <div class="form-group">
+        <div
+          class="card text-center"
+          *ngIf="currentUser != null"
+          style="background-color: inherit; border: 2px solid lightgray;"
+        >
+          <div class="card-body">
+            <h5 class="card-title">Hello {{ currentUser[0].first_name }}</h5>
+            <div *ngIf="currentUser[0].basket != null">
+              <p style="padding: 20px;" class="h6">
+                you have open cart from {{ currentUser[0].basket }}
+              </p>
+            </div>
+            <div *ngIf="currentUser[0].orders.length > 0">
+              <p style="padding: 20px;" class="h6">
+                Your last Order Is From
+                {{
+                  currentUser[0].orders.slice(-1)[0].date | date: "yyyy/MM/dd"
+                }}
+              </p>
+            </div>
+            <div *ngIf="currentUser[0].orders.length == 0">
+              <p
+                *ngIf="currentUser[0].type == 1"
+                style="padding: 20px;"
+                class="h6"
+              >
+                Welcom! Start Shopping Now!
+              </p>
+              <p
+                *ngIf="currentUser[0].type == 0"
+                style="padding: 20px;"
+                class="h6"
+              >
+                Welcome Back Boss!
+              </p>
+            </div>
+            <div
+              class="btn btn-dark btn-sm"
+              (click)="checkUserSession()"
+              *ngIf="currentUser[0].type == 1"
+            >
+              {{ basket.length > 0 ? "Continue Shopping" : "Start Shopping" }}
+            </div>
+            <div
+              class="btn btn-dark btn-sm"
+              (click)="checkUserSession()"
+              *ngIf="currentUser[0].type == 0"
+            >
+              Go To Admin Page
+            </div>
+
+            <div class="row mt-2" style="position: relative; left: 125px;">
+              <div class="btn btn-danger btn-sm" (click)="logOut()">
+                Log Out
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="!currentUser">
+          <label for="exampleInputEmail1">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter Email"
+            [(ngModel)]="email"
+          />
+        </div>
+      </div>
+      <div class="form-group" *ngIf="!currentUser">
+        <label for="exampleInputPassword1">Password</label>
+        <input
+          type="{{ fieldType }}"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Password"
+          [(ngModel)]="password"
+        />
+        <span
+          toggle="#password-field"
+          class="{{ icon }}"
+          (click)="showPass()"
+        ></span>
+      </div>
+
+      <input
+        type="button"
+        class="form-control btn btn-primary"
+        value="Login"
+        (click)="getUser()"
+        *ngIf="!currentUser"
+      />
+      <input
+        type="button"
+        class="form-control btn btn-danger mt-2"
+        value="Register"
+        *ngIf="!currentUser"
+        routerLink="/register"
+      />
+
+      <div class="form-row justify-content-center mt-2">
+        <div class="alert alert-danger" *ngIf="messageShow">{{ message }}</div>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="col py-8 px-lg-8 border bg-light">
+        <img
+          src="https://image.freepik.com/free-vector/delivery-logo-template-with-gradient-effect_23-2147880117.jpg"
+          class="img-fluid"
+          alt="Responsive image"
+        />
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item h6">
+            Fast & Free Shipping<i class="fab fa-ups callout-icons"></i>
+          </li>
+          <li class="list-group-item h6">
+            24/7 Customer Service<i
+              class="fas fa-phone-square callout-icons"
+            ></i>
+          </li>
+          <li class="list-group-item h6">
+            Guarenteed Best Quailty<i class="fas fa-tools callout-icons"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col py-8 px-lg-8 border bg-light">
+      <div class="col-sm-2">
+        <div class="c-callout c-callout-success">
+          <small class="text-muted">Users</small><br />
+          <strong class="h4">{{ users }}</strong>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="c-callout c-callout">
+          <small class="text-muted">Products</small><br />
+          <strong class="h4">{{ products }}</strong>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <div class="c-callout c-callout-warning">
+          <small class="text-muted">Orders</small><br />
+          <strong class="h4">{{ orders }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

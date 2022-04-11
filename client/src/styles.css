@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+.top{
+    position: sticky;
+    width: 100%;
+    background-color: black;
+    height: 250px;
+    color: white;
+}
+
+.logo{
+    position: sticky;
+    top: 127px;
+    left: 10px;
+}
+
+.banner{
+    font-size: 50px;
+    position: relative;
+    left: 200px;
+    width: 60%;
+    text-align: center;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
